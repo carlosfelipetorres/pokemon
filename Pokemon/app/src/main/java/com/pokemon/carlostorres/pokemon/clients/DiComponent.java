@@ -2,7 +2,7 @@ package com.pokemon.carlostorres.pokemon.clients;
 
 import android.content.Context;
 
-import com.pokemon.carlostorres.pokemon.presentation.MainListActivity;
+import com.pokemon.carlostorres.pokemon.presentation.PokemonListActivity;
 import com.pokemon.carlostorres.pokemon.presentation.PokemonDetailActivity;
 import com.pokemon.carlostorres.pokemon.services.ManagersModule;
 import com.pokemon.carlostorres.pokemon.services.ServicesModule;
@@ -28,7 +28,7 @@ public interface DiComponent {
     Context context();
 
     // Main List Activity
-    void inject(MainListActivity activity);
+    void inject(PokemonListActivity activity);
 
     // Detail Activity
     void inject(PokemonDetailActivity activity);

@@ -48,6 +48,9 @@ public class PokemonDetailActivity extends BaseActivity implements SensorEventLi
         float z = values[2];
 
         float accelationSquareRoot = (x * x + y * y + z * z) / (SensorManager.GRAVITY_EARTH * SensorManager.GRAVITY_EARTH);
+        if(accelationSquareRoot > 6.0){
+            double a = accelationSquareRoot;
+        }
     }
 
     @Override
