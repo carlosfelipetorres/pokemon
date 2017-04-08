@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.pokemon.carlostorres.pokemon.presentation.PokemonListActivity;
 import com.pokemon.carlostorres.pokemon.presentation.PokemonDetailActivity;
+import com.pokemon.carlostorres.pokemon.presentation.SplashActivity;
 import com.pokemon.carlostorres.pokemon.services.ManagersModule;
 import com.pokemon.carlostorres.pokemon.services.ServicesModule;
 
@@ -32,4 +33,7 @@ public interface DiComponent {
 
     // Detail Activity
     void inject(PokemonDetailActivity activity);
+
+    // Splash Activity
+    void inject(SplashActivity activity);
 }

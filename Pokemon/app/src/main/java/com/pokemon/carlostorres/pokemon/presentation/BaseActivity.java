@@ -30,18 +30,11 @@ import butterknife.ButterKnife;
 public abstract class BaseActivity extends AppCompatActivity {
 
     /**
-     * Toolbar
+     * no internet
      **/
-//    @BindView(R.id.toolbar)
-//    @Nullable
-//    protected Toolbar mToolbar;
-//
-//    /**
-//     * no internet
-//     **/
-//    @BindView(R.id.nointernet)
-//    @Nullable
-//    protected TextView mNoInternet;
+    @BindView(R.id.nointernet)
+    @Nullable
+    protected TextView mNoInternet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +46,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
         ButterKnife.bind(this);
-//        if (mToolbar != null) {
-//            setSupportActionBar(mToolbar);
-//        }
         checkOnline();
     }
 
@@ -120,7 +110,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * Check online
      */
     public void checkOnline() {
-//        mNoInternet.setVisibility(!isOnline() ? View.VISIBLE : View.GONE);
+        mNoInternet.setVisibility(!isOnline() ? View.VISIBLE : View.GONE);
     }
 
 }

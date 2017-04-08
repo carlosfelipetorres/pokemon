@@ -3,6 +3,10 @@ package com.pokemon.carlostorres.pokemon.services;
 import android.content.Context;
 import android.util.Log;
 
+import com.pokemon.carlostorres.pokemon.managers.DatabaseHelper;
+import com.pokemon.carlostorres.pokemon.managers.PokemonInfoManager;
+import com.pokemon.carlostorres.pokemon.managers.PokemonItemManager;
+
 import java.sql.SQLException;
 
 import javax.inject.Singleton;
@@ -39,47 +43,47 @@ public class ManagersModule {
      *
      * @return {@link DatabaseHelper} instance
      */
-//    @Provides
-//    @Singleton
-//    public DatabaseHelper databaseHelper() {
-//        return new DatabaseHelper(mContext);
-//    }
-//
-//    /**
-//     * Bind of the {@link ICategoriesManager} with its implementation
-//     *
-//     * @param helper
-//     *         DB Helper
-//     *
-//     * @return Implementation of the Alarms Manager
-//     */
-//    @Provides
-//    @Singleton
-//    public ICategoriesManager categoriesManager(DatabaseHelper helper) {
-//        try {
-//            return new CategoriesManager(helper);
-//        } catch (SQLException e) {
-//            Log.e(TAG, "An error occurred while creating the instance of the Categories Manager", e);
-//        }
-//        return null;
-//    }
-//
-//    /**
-//     * Bind of the {@link ICategoriesManager} with its implementation
-//     *
-//     * @param helper
-//     *         DB Helper
-//     *
-//     * @return Implementation of the Alarms Manager
-//     */
-//    @Provides
-//    @Singleton
-//    public IAppsManager appsManager(DatabaseHelper helper) {
-//        try {
-//            return new AppsManager(helper);
-//        } catch (SQLException e) {
-//            Log.e(TAG, "An error occurred while creating the instance of the Apps Manager", e);
-//        }
-//        return null;
-//    }
+    @Provides
+    @Singleton
+    public DatabaseHelper databaseHelper() {
+        return new DatabaseHelper(mContext);
+    }
+
+    /**
+     * Bind of the {@link PokemonItemManager} with its implementation
+     *
+     * @param helper
+     *         DB Helper
+     *
+     * @return Implementation of the Alarms Manager
+     */
+    @Provides
+    @Singleton
+    public PokemonItemManager pokemonItemManager(DatabaseHelper helper) {
+        try {
+            return new PokemonItemManager(helper);
+        } catch (SQLException e) {
+            Log.e(TAG, "An error occurred while creating the instance of the Item Manager", e);
+        }
+        return null;
+    }
+
+    /**
+     * Bind of the {@link PokemonInfoManager} with its implementation
+     *
+     * @param helper
+     *         DB Helper
+     *
+     * @return Implementation of the Alarms Manager
+     */
+    @Provides
+    @Singleton
+    public PokemonInfoManager pokemonInfoManager(DatabaseHelper helper) {
+        try {
+            return new PokemonInfoManager(helper);
+        } catch (SQLException e) {
+            Log.e(TAG, "An error occurred while creating the instance of the Info Manager", e);
+        }
+        return null;
+    }
 }

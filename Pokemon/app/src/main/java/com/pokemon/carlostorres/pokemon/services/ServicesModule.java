@@ -2,6 +2,9 @@ package com.pokemon.carlostorres.pokemon.services;
 
 import android.content.Context;
 
+import com.pokemon.carlostorres.pokemon.managers.PokemonInfoManager;
+import com.pokemon.carlostorres.pokemon.managers.PokemonItemManager;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -34,8 +37,8 @@ public class ServicesModule {
      */
     @Provides
     @Singleton
-    public IPokemonService PokemonService(Context mContext) {
-        return new PokemonService(mContext);
+    public IPokemonService PokemonService(Context mContext, PokemonItemManager pokemonItemManager, PokemonInfoManager pokemonInfoManager) {
+        return new PokemonService(mContext, pokemonItemManager, pokemonInfoManager);
     }
 
     /**

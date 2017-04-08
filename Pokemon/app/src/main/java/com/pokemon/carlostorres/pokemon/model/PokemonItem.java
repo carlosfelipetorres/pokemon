@@ -1,18 +1,31 @@
 package com.pokemon.carlostorres.pokemon.model;
 
 import com.google.gson.annotations.SerializedName;
+import com.j256.ormlite.field.DatabaseField;
 
 /**
  * @author <a href="mailto:carlosfelipetorres75@gmail.com">Carlos Torres</a>
  */
 public class PokemonItem {
 
+    @DatabaseField(generatedId = true)
+    private Integer id;
     @SerializedName("url")
+    @DatabaseField(canBeNull = true)
     private String url;
     @SerializedName("name")
+    @DatabaseField(canBeNull = false)
     private String name;
 
+    @DatabaseField()
     private boolean catched;
+
+    public PokemonItem(){}
+
+    public PokemonItem(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public String getUrl() {
         return url;

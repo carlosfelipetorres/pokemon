@@ -11,7 +11,11 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.pokemon.carlostorres.pokemon.R;
+import com.pokemon.carlostorres.pokemon.model.PokemonInfo;
 import com.pokemon.carlostorres.pokemon.model.PokemonItem;
 import com.pokemon.carlostorres.pokemon.services.IPokemonService;
 import com.pokemon.carlostorres.pokemon.utils.AnimationUtils;
@@ -62,34 +66,43 @@ public class ListAdapter extends RecyclerView.Adapter {
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.pokemonItemList = redditCategories;
         this.pokemonService = rappiTestService;
+
+        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+                .cacheInMemory(true)
+                .cacheOnDisc(true)
+                .build();
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
+                .defaultDisplayImageOptions(defaultOptions)
+                .build();
+        ImageLoader.getInstance().init(config);
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View vistaCompetencia = mInflater.inflate(R.layout.categories_row, parent, false);
+        View vistaCompetencia = mInflater.inflate(R.layout.pokemon_item, parent, false);
         return new ViewHolder(vistaCompetencia);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        PokemonItem category = pokemonItemList.get(position);
+        final PokemonItem pokemon = pokemonItemList.get(position);
         final ViewHolder vh = (ViewHolder) holder;
 
-        vh.titulo.setText(category.getName());
-//        vh.descripcion.setText(category.getPublicDescription());
-//        if ((category.getIconImg().isEmpty() || category.getIconImg() == null) && category.getHeaderImg() != null) {
-//            Uri uri = Uri.parse(category.getHeaderImg());
-//            ImageManageUtils.displayRoundImage(vh.imagen, uri.toString(), null);
-//        } else {
-//            Uri uri = Uri.parse(category.getIconImg());
-//            ImageManageUtils.displayImage(vh.imagen, uri.toString(), null);
-//        }
+        vh.titulo.setText(pokemon.getName());
+        PokemonInfo info = pokemonService.getPokemonByName(pokemon.getName());
+        if(pokemon.isCatched() && info != null){
+            ImageLoader.getInstance().displayImage(info.getSprites().getFrontShiny(), vh.imagen);
+            vh.cv.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
+        } else {
+            vh.imagen.setImageResource(R.drawable.siluet);
+            vh.cv.setBackgroundColor(mContext.getResources().getColor(R.color.white));
+        }
+
         vh.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PokemonItem rc = pokemonItemList.get(position);
-//                pokemonService.saveCategory(rc);
                 Intent intent = new Intent(mContext, PokemonDetailActivity.class);
+                intent.putExtra("id", position + 1);
                 AnimationUtils.configurarAnimacion(mContext, vh.cv, true, intent);
             }
         });
@@ -151,7 +164,6 @@ public class ListAdapter extends RecyclerView.Adapter {
         public ViewHolder(View itemView) {
             super(itemView);
             titulo = (TextView) itemView.findViewById(R.id.title);
-            descripcion = (TextView) itemView.findViewById(R.id.description);
             imagen = (ImageView) itemView.findViewById(R.id.photo);
             cv = (CardView) itemView.findViewById(R.id.cv);
         }
