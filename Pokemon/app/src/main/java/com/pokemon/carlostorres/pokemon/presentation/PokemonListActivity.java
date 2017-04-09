@@ -48,7 +48,7 @@ public class PokemonListActivity extends BaseActivity implements SwipeRefreshLay
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_list);
         loadPokemons();
-        setTitle("Pokemon List");
+        setTitle(R.string.pokemon_list);
         int orientation = getResources().getConfiguration().orientation;
         if(orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
             mLayoutManager = new LinearLayoutManager(this);
@@ -129,7 +129,7 @@ public class PokemonListActivity extends BaseActivity implements SwipeRefreshLay
         protected void onPostExecute(Void aVoid) {
             if (listaPokemons == null) {
                 AppUtils.crearToast(PokemonListActivity.this,
-                        "Hubo un problema con la conexion a internet", SuperToast.Duration.MEDIUM,
+                        getString(R.string.no_internet), SuperToast.Duration.MEDIUM,
                         TipoNotificacion.ALERTA).show();
                 super.onPostExecute(aVoid);
                 return;
@@ -141,7 +141,6 @@ public class PokemonListActivity extends BaseActivity implements SwipeRefreshLay
             recyclerViewPokemons.setAdapter(mAdapter);
             mIsLoading = false;
             mLayoutManager.scrollToPosition(orderType - 6);
-//            orderType = pokeItems.size();
             if (swipeRefreshLayout.isRefreshing()) {
                 swipeRefreshLayout.setRefreshing(false);
             }

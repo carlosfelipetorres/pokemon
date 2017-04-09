@@ -20,12 +20,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cv"
-        android:clickable="true"
+        android:layout_alignParentEnd="true"
         tools:cardElevation="2dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
-        android:layout_centerInParent="true"
-        android:layout_alignParentBottom="true">
+        android:layout_margin="20dp">
 
         <RelativeLayout
             android:layout_width="250dp"
@@ -35,7 +32,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/photo"
-                android:layout_centerInParent="true"
                 android:src="@drawable/siluet"/>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
@@ -44,7 +40,7 @@
         android:id="@+id/relativeLayout_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_centerInParent="false"
         android:layout_alignParentTop="true"
         android:padding="16dp">
 
@@ -101,11 +97,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView_shake_it"
-        android:layout_centerInParent="true"
+        android:layout_centerInParent="false"
         android:textSize="25sp"
-        android:layout_above="@id/cv"
+        android:layout_below="@id/linearLayout_info"
         android:background="@color/colorPrimaryDark"
         android:textColor="@color/colorAccent"
+        android:layout_margin="10dp"
         tools:text="titulo"/>
 
 </RelativeLayout>

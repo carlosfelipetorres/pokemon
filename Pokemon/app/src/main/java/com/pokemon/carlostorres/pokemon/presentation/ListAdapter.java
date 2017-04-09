@@ -24,6 +24,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import static com.pokemon.carlostorres.pokemon.presentation.PokemonDetailActivity.ID;
+
 /**
  * Esta clase es utilizada para adaptar las visita de pokemons en un Recycler view
  *
@@ -38,20 +40,11 @@ public class ListAdapter extends RecyclerView.Adapter {
     /** ultima posicion del item **/
     private int lastPosition = -1;
 
-    /**
-     * Inflater
-     **/
     private LayoutInflater mInflater;
 
-    /**
-     * Reddit service
-     **/
     @Inject
     IPokemonService pokemonService;
 
-    /**
-     * Las categorias a ser mostradas
-     **/
     private List<PokemonItem> pokemonItemList;
 
     /**
@@ -102,7 +95,7 @@ public class ListAdapter extends RecyclerView.Adapter {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, PokemonDetailActivity.class);
-                intent.putExtra("id", position + 1);
+                intent.putExtra(ID, position + 1);
                 AnimationUtils.configurarAnimacion(mContext, vh.cv, true, intent);
             }
         });

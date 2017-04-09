@@ -6,4 +6,11 @@
     <string name="weight">Weight: %1$s</string>
     <string name="heigh">Heigh: %1$s</string>
     <string name="exp">Experience: %1$s</string>
+    <string name="no_internet">Hubo un problema con la conexion a internet</string>
+    <string name="pokemon_list">Pokemon List</string>
+    <string name="shake_catch">Shake it for catch\'em!</string>
+    <string name="catch_pokemon">Has atrapado a %1$s</string>
+    <string name="error_catching">Error atranpado pokemon</string>
+    <string name="gotcha">GOTCHA!</string>
+
 </resources>
